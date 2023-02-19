@@ -1,8 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
 
-
-  validates :content, presence: true
+  validates :name, presence: true
 
   enum category: {
     fruit: "fruit",
