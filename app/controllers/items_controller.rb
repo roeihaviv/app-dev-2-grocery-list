@@ -1,5 +1,15 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :set_item, only: %i[ show edit update destroy move]
+
+  def move
+    if @item.stock?
+      @item.cart!
+    end
+
+    respond_to do |format|
+      format.html { redirect_to items_url, notice: "Item updated" }
+    end
+  end
 
   # GET /items or /items.json
   def index
@@ -71,5 +81,9 @@ class ItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def item_params
       params.require(:item).permit(:name, :category, :status, :picture, :amount, :user_id)
+    end
+
+    def cart
+      render({ :template => "items/category.html.erb" })
     end
 end

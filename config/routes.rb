@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :items do
     patch "move", on: :member
   end
+
+  get("/cart", { :controller => "items", :action => "cart" })
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
