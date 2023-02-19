@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2023_02_19_172818) do
   enable_extension "plpgsql"
 
   create_table "items", force: :cascade do |t|
-    t.string "name", null: false
+    t.string "name"
     t.string "category"
-    t.string "status", default: "stock"
+    t.string "status"
     t.string "picture"
     t.integer "amount"
     t.integer "user_id"
