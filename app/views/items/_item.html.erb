@@ -3,13 +3,12 @@
   <img src="<%= item.picture %>" class="card-img-top" style="width: 150px; height: 150px;">
   <div class="card-body">
     <h5><%= "In cart: " + item.amount.to_s %></h5>
-    <td><%= button_to 'Add to Cart', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post, :class => "btn btn-outline-primary"  %></td>
-    
-    <% if item.amount && item.amount > 0 %>
+    <% if item.amount && item.amount == 0 %>
+      <td><%= button_to 'Add to Cart', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post, :class => "btn btn-outline-primary"  %></td>
+    <% else %>
+      <td><%= button_to 'Add more', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post, :class => "btn btn-outline-primary"  %></td>
       <td><%= button_to 'Remove', {:controller => "items", :action => "remove_item_from_cart", :item_id => item.id} , remote: true, :method=>:post, class: "btn btn-outline-danger"  %></td>
-      <%# <%= link_to item, method: :delete, remote: true, class: "btn btn-link" do %>
-        <%# <i class="fa-sharp fa-solid fa-trash-can"></i> %>
-      <%# <% end %>
     <% end %>
+    <br>
   </div>
 </div>
