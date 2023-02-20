@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :status, default: "stock"
       t.string :picture
       t.integer :amount
-      t.integer :user_id
+      t.integer :user_id, default: "1"
 
       t.timestamps
     end
