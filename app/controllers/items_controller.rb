@@ -1,5 +1,22 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: %i[ show edit update destroy move]
+  before_action :set_item, only: %i[ show edit update destroy move ]
+
+  def add_item_to_cart
+    Item.find(params[:item_id]).add_to_cart!
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
+  def remove_item_from_cart
+    Item.find(params[:item_id]).remove_from_cart!
+
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
+  end
+
 
   def move
     if @item.stock?
@@ -7,7 +24,7 @@ class ItemsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: "Item updated" }
+      #format.html { redirect_to items_url, notice: "Item updated" }
     end
   end
 
@@ -73,17 +90,18 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def item_params
-      params.require(:item).permit(:name, :category, :status, :picture, :amount, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    def cart
-      render({ :template => "items/category.html.erb" })
-    end
+  # Only allow a list of trusted parameters through.
+  def item_params
+    params.require(:item).permit(:name, :category, :status, :picture, :amount, :user_id)
+  end
+
+  def cart
+    render({ :template => "items/category.html.erb" })
+  end
 end

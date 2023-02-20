@@ -19,4 +19,14 @@ class Item < ApplicationRecord
     cart: "cart",
     stock: "stock"
   }
+
+  def add_to_cart!
+    self.amount += 1
+    self.save!
+  end
+
+  def remove_from_cart!
+    self.amount -= 1
+    self.save!
+  end
 end

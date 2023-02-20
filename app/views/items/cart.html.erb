@@ -1,17 +1,5 @@
 <% current_user.items.each do |item| %>
-  <li><%= item.category %></li>
+  <% if item.amount && item.amount > 0 %>
+    <li><%= render item %></li>
+  <% end %>
 <% end %>
-
-<div class="row">
-  <div class="col-md-4">
-    <div class="card">
-      <div class="card-header">
-        Cart
-      </div>
-
-      <ul id="cart_list" class="list-group list-group-flush">
-        <%= render "items/form", item: current_user.items.build %>
-        <%= render current_user.items.cart.order(created_at: :desc) %>
-      </ul>
-    </div>
-  </div>

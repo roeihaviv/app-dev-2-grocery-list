@@ -6,6 +6,11 @@
     <%= link_to item, method: :delete, remote: true, class: "btn btn-link" do %>
       <i class="fa-sharp fa-solid fa-trash-can"></i>
     <% end %>
-    <td><%= button_to 'Add to Cart' %></td>
+
+    <h5><%= "In cart: " + item.amount.to_s %></h5>
+    <td><%= link_to 'Add to Cart', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post  %></td>
+    <% if item.amount && item.amount > 0 %>
+      <td><%= link_to 'Remove from Cart', {:controller => "items", :action => "remove_item_from_cart", :item_id => item.id} , remote: true, :method=>:post  %></td>
+    <% end %>
   </div>
 </div>
