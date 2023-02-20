@@ -1,5 +1,5 @@
 <% current_user.items.each do |item| %>
   <% if item.amount && item.amount > 0 %>
-    <li><%= render item %></li>
+    <div><%= render item %></div>
   <% end %>
 <% end %>
