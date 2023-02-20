@@ -8,9 +8,9 @@
     <% end %>
 
     <h5><%= "In cart: " + item.amount.to_s %></h5>
-    <td><%= link_to 'Add to Cart', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post  %></td>
+    <td><%= button_to 'Add to Cart', {:controller => "items", :action => "add_item_to_cart", :item_id => item.id} ,remote: true,  :method=>:post  %></td>
     <% if item.amount && item.amount > 0 %>
-      <td><%= link_to 'Remove from Cart', {:controller => "items", :action => "remove_item_from_cart", :item_id => item.id} , remote: true, :method=>:post  %></td>
+      <td><%= button_to 'Remove', {:controller => "items", :action => "remove_item_from_cart", :item_id => item.id} , remote: true, :method=>:post  %></td>
     <% end %>
   </div>
 </div>
