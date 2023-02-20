@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
     Item.find(params[:item_id]).add_to_cart!
 
     respond_to do |format|
+      flash[:notice] = "Item added to cart"
       format.js {render inline: "location.reload();" }
     end
   end
@@ -13,6 +14,7 @@ class ItemsController < ApplicationController
     Item.find(params[:item_id]).remove_from_cart!
 
     respond_to do |format|
+      flash[:alert] = "Item removed from cart"
       format.js {render inline: "location.reload();" }
     end
   end
