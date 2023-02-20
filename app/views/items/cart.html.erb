@@ -1,5 +1,12 @@
+<% empty = true %>
 <% current_user.items.each do |item| %>
   <% if item.amount && item.amount > 0 %>
     <div><%= render item %></div>
+    <% empty = false %>
   <% end %>
+<% end %>
+
+<% if empty %>
+  <p style="text-align:center;"><img src="https://www.valeorx.com/static/media/empty-cart.60e68bfd.png" alt="Empty Cart" /></p>
+  <h3 style="text-align: center;"><a href="/" class="btn btn-outline-primary">Add item to cart!</a></h3>
 <% end %>
